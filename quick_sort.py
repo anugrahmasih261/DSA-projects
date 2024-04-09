@@ -24,3 +24,13 @@ sorted_arr = quick_sort(arr)
 
 # Print sorted array
 print("Sorted Array:", sorted_arr)
+
+
+# Explanation of time and space 
+'''
+Time Complexity: The average time complexity of Quick Sort is O(n log n), 
+where n is the number of elements in the array. However, 
+in the worst-case scenario (when the pivot is not well chosen), it can degrade to O(n^2).
+Space Complexity: The space complexity of Quick Sort is O(log n) 
+in the best and average cases due to the recursive calls. In the worst case, it can be O(n) due to the recursion depth.
+'''
