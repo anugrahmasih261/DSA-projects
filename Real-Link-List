@@ -1,0 +1,55 @@
+# This is a class to represent a Node in a Linked List.
+class Node:
+    def __init__(self, data):  # When a new Node is created, we give it some data.
+        self.data = data  # The data stored in this Node. For example, 'America' could be stored here.
+        self.next = None  # The 'next' is like a pointer. It tells us where the next Node is. It's None because we don't know the next Node yet.
+
+# This class will represent the Linked List itself, which is a bunch of Nodes linked together.
+class LinkedList:
+    def __init__(self):  # When a new Linked List is created, it starts with nothing.
+        self.head = None  # 'head' is the first Node of the Linked List. It's None because the list is empty at the start.
+
+    # This function adds an element (data) at the end of the Linked List.
+    def append(self, data):
+        new_node = Node(data)  # We create a new Node and store the given data in it.
+        
+        # If the Linked List is empty (head is None), the new Node becomes the first Node (head).
+        if self.head is None:
+            self.head = new_node  # The new Node becomes the head (first Node) of the list.
+            return  # We stop here because there's no more work to do when the list was empty.
+        
+        # If the list is not empty, we need to find the last Node and add the new Node after it.
+        last = self.head  # Start with the first Node (head).
+        
+        # Keep moving to the next Node until we find the last Node (where 'next' is None).
+        while last.next:
+            last = last.next  # Move to the next Node.
+        
+        # Now we know 'last' is the last Node, so we make it point to the new Node.
+        last.next = new_node  # The last Node's 'next' now points to the new Node, adding it to the list.
+
+    # This function removes an element by its value from the Linked List.
+    def remove(self, key):
+        temp = self.head  # Start by checking the first Node (head).
+        
+        # If the first Node (head) has the value we want to remove, we need to update the head.
+        if temp is not None:
+            if temp.data == key:  # If the head Node's data matches the value we want to remove:
+                self.head = temp.next  # The head now becomes the second Node (head points to the next Node).
+                temp = None  # The old head is removed.
+                return  # Stop here since we've removed the value.
+
+        # If the value wasn't found in the first Node, we search through the rest of the list.
+        while temp is not None:
+            if temp.data == key:  # If we find a Node with the matching value:
+                break  # We stop because we've found the Node to remove.
+            prev = temp  # Keep track of the previous Node.
+            temp = temp.next  # Move to the next Node.
+        
+        # If we reached the end of the list (temp is None) and didn't find the value.
+        if temp is None:
+            print(f"{key} not found in the list.")  # Print that the value wasn't found.
+            return  # Stop here.
+
+        # We skip over the Node to remove by making the previous Node point to the next Node.
+        prev.next = temp.next
